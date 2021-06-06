@@ -1,0 +1,29 @@
+<html>
+<script>
+var rn=0,uans = 0;
+function genNewValue()
+{
+	rn = Math.floor(Math.random()*31);
+	alert(rn);
+}
+function check()
+{
+	var reference1 = document.getElementById('ip1');
+	var uans = reference1.value;
+	var msg='';
+	if(uans==rn) msg= '<div bgcolor=green>great!</div>';
+	else if(uans>rn) msg='<div bgcolor=red>too large!</div>';
+	else msg='<div bgcolor=yellow>too small!</div>';
+	var ref2 =document.getElementById('feed');
+	ref2.innerHTML = msg;
+}
+</script>
+<body onload = "genNewValue();">
+please an integer(0-30):
+<input type=text id='ip1'>
+<button onclick='check();'>check</button><br>
+<p id='feed'></p>
+
+</body>
+
+</html>
