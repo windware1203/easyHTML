@@ -4,22 +4,27 @@
 			var n1,n2,score = 0,msg,sign='';<!-- 注意!南屯土龍寫程式 -->
 			var answer;
 			var error='',errorTmp= 1;
-			
+			var allQuestionAmount[0,0,0,0];
+			var correctQuestionAmount[0,0,0,0];
 			function genAdd()
 			{
 				var ref1 = document.getElementById('q1');
 				var scoreR = document.getElementById('scoreSpan');
+				var refAmount = document.getElementById('AllAdd');
 				
 				n1 = Math.floor(Math.random()*21+5);
 				n2 = Math.floor(Math.random()*21+3);
 				answer = n1+n2;
 				ref1.innerHTML=n1+" + "+n2;
 				scoreR.innerHTML =score;
+				allQuestionAmount[0]++;
+				refAmount.innerHTML = allQuestionAmount[0];
 			}
 			function genSub()
 			{
 				var ref1 = document.getElementById('q1');
 				var scoreR = document.getElementById('scoreSpan');
+				var refAmount = document.getElementById('AllSub');
 				
 				n1 = Math.floor(Math.random()*21+5);
 				n2 = Math.floor(Math.random()*21+3);
@@ -32,23 +37,27 @@
 				answer = n1-n2;
 				ref1.innerHTML=n1+" - "+n2;
 				scoreR.innerHTML =score;
+				allQuestionAmount[1]++;
+				refAmount.innerHTML = allQuestionAmount[1];
 			}
 			function genMul()
 			{
 				var ref1 = document.getElementById('q1');
 				var scoreR = document.getElementById('scoreSpan');
-				
+				var refAmount = document.getElementById('AllMul');
 				n1 = Math.floor(Math.random()*10);
 				n2 = Math.floor(Math.random()*10);
 				answer = n1*n2;
 				ref1.innerHTML=n1+" * "+n2;
 				scoreR.innerHTML =score;
+				allQuestionAmount[2]++;
+				refAmount.innerHTML = allQuestionAmount[2];
 			}
 			function genDiv()
 			{
 				var ref1 = document.getElementById('q1');
 				var scoreR = document.getElementById('scoreSpan');
-				
+				var refAmount = document.getElementById('AllDiv');
 				
 				n2 = Math.floor(Math.random()*15)+1;
 				n1 = n2 * (Math.floor(Math.random()*4)+1);
@@ -56,6 +65,8 @@
 				answer = n1/n2;
 				ref1.innerHTML=n1+" ÷ "+n2;
 				scoreR.innerHTML =score;
+				allQuestionAmount[3]++;
+				refAmount.innerHTML = allQuestionAmount[3];
 			}
 			
 			function questionPush()
@@ -96,16 +107,36 @@
 				
 				if(uans == answer && uans !='')
 				{
+					var correctQuestionTitle='';
+					
+					switch (sign)
+					{
+						case 0:
+							correctQuestionTitle = 'correctAdd';
+							break;
+						case 1:
+							correctQuestionTitle = 'correctSub';
+							break;
+						case 2:
+							correctQuestionTitle = 'correctMul';
+							break;
+						case 3:
+							correctQuestionTitle = 'correctDiv';
+							break;
+					}
+					
+					var refAmount = document.getElementById(correctQuestionTitle);
 					msg = "Correct!";
 					score += 5;
-					fbRef.innerHTML = "<img width=30% src='rainbowcat1.gif' width=10%>";
-					
+					fbRef.innerHTML = '<img width=10% src="correct.png" width=10%>';
+					correctQuestionAmount[sign]++;
+					refAmount.innerHTML = correctQuestionAmount[sing];
 				}
 				else
 				{
 					msg = "Incorrect!";
 					score -= 3;
-					fbRef.innerHTML = "<img width=30% src='rainbowcat1.gif' width=10%>";
+					fbRef.innerHTML = '<img width=10% src="incorrect.png" width=10%>';
 					var signArr = [" + "," - "," * "," ÷ "];
 					error = error + errorTmp + '.' + '&#9;' + n1 + '&#9;' + signArr[sign] + '&#9;' + n2 + ' = ' +'<br>';
 					errorTmp++;
@@ -130,20 +161,44 @@
 				margin-top:2em;
 				margin-bottom:2em;
 			}
+			
 			.right
 			{
 				font-size:100px;
 				font-size:35px;font-family: 'Noto Serif JP', serif;
 				position:absolute;
-				right:30%
+				right:20%
 			}
+			
 			tr
 			{
 				margin:auto;
 			}
+			
 			.eeStyle
 			{
 				color : red;
+			}
+			
+			table,th,td
+			{ 
+				border-collapse:collapse;
+				border: 1px solid black;
+			}
+			
+			th
+			{
+				height:50px;
+			}
+			
+			tr 
+			{ 
+				border-bottom:1px solid #000; 
+			}
+
+			td
+			{
+				text-align:right;
 			}
 		</style>
 	</head>
@@ -152,7 +207,32 @@
 		Question:
 		<div class='right'>
 			Score:
-			<span id=scoreSpan></span>
+			<span id=scoreSpan></span><br>
+			<table>
+				<tr>
+					<th>Arithmetic</th>
+					<th>Addition</th>
+					<th>Subtraction</th>
+					<th>Multiplication</th>
+					<th>Division</th>
+				</tr>
+				
+				<tr>
+					<td>All</td>
+					<td><span id=allAdd>0</span></td>
+					<td><span id=allSub>0</span></td>
+					<td><span id=allMul>0</span></td>
+					<td><span id=allDiv>0</span></td>
+				</tr>
+				
+				<tr>
+					<td>Correct</td>
+					<td><span id=correctAdd>0</span></td>
+					<td><span id=correctSub>0</span></td>
+					<td><span id=correctMul>0</span></td>
+					<td><span id=correctDiv>0</span></td>
+				</tr>
+			</table>
 		</div>
 		<br>
 		<span style="font-family: 'Bodoni Moda', serif;" id='q1'>??+??</span>=
@@ -161,17 +241,14 @@
 		<br>
 		<span id='scoreSpan'></span>
 		<br>
-		<table style = 'width:50%;font-size:30px;'>
-			<tr>
-				<td>Feed Back :::</td>
-				<td><span id='fb1'></span></td>
-				<td>
-					<span id='fbImg'>
-						<img width=30% src='rainbowcat1.gif' width=10%>
-					</span>
-				</td>
-			</tr>
-		</table>
+		
+				Feed Back :::
+				<span id='fb1'></span>
+				
+				<span id='fbImg'>
+					<img width=30% src='rainbowcat1.gif' width=10%>
+				</span>
+				
 		<div id='errorArea' class='eeStyle' style=></div>
 	</body>
 </html>
