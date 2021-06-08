@@ -1,181 +1,19 @@
 <html>
 	<head>
-		<script>
-			var n1,n2,score = 0,msg,sign='';<!-- 注意!南屯土龍寫程式 -->
-			var answer;
-			var error='',errorTmp= 1;
-
-			function genAdd()
-			{
-				var ref1 = document.getElementById('q1');
-				var scoreR = document.getElementById('scoreSpan');
-
-				n1 = Math.floor(Math.random()*21+5);
-				n2 = Math.floor(Math.random()*21+3);
-				answer = n1+n2;
-				ref1.innerHTML=n1+" + "+n2;
-				scoreR.innerHTML =score;
-			}
-			function genSub()
-			{
-				var ref1 = document.getElementById('q1');
-				var scoreR = document.getElementById('scoreSpan');
-
-				n1 = Math.floor(Math.random()*21+5);
-				n2 = Math.floor(Math.random()*21+3);
-				if(n1<n2)
-				{
-					n1 ^= n2;
-					n2 ^= n1;
-					n1 ^= n2;
-				}
-				answer = n1-n2;
-				ref1.innerHTML=n1+" - "+n2;
-				scoreR.innerHTML =score;
-			}
-			function genMul()
-			{
-				var ref1 = document.getElementById('q1');
-				var scoreR = document.getElementById('scoreSpan');
-
-				n1 = Math.floor(Math.random()*10);
-				n2 = Math.floor(Math.random()*10);
-				answer = n1*n2;
-				ref1.innerHTML=n1+" * "+n2;
-				scoreR.innerHTML =score;
-			}
-			function genDiv()
-			{
-				var ref1 = document.getElementById('q1');
-				var scoreR = document.getElementById('scoreSpan');
-
-
-				n2 = Math.floor(Math.random()*15)+1;
-				n1 = n2 * (Math.floor(Math.random()*4)+1);
-
-				answer = n1/n2;
-				ref1.innerHTML=n1+" ÷ "+n2;
-				scoreR.innerHTML =score;
-			}
-
-			function questionPush()
-			{
-				var questionType = -1;
-				questionType = Math.floor(Math.random()*4);
-				sign = questionType;
-				switch (questionType)
-				{
-					case 0:
-						genAdd();
-						break;
-					case 1:
-						genSub();
-						break;
-					case 2:
-						genMul();
-						break;
-					case 3:
-						genDiv();
-						break;
-				}
-			}
-
-			function errorCheck()
-			{
-				var errorRef = document.getElementById('errorArea');
-				errorRef.innerHTML = error;
-			}
-
-			function check()
-			{
-				var ref2 = document.getElementById('reply');
-				var uans = ref2.value;
-				var feedback = document.getElementById('fb1');
-				var scoreR = document.getElementById('scoreSpan');
-				var fbRef = document.getElementById('fbImg');
-
-				if(uans == answer && uans !='')
-				{
-					msg = "Correct!";
-					score += 5;
-					fbRef.innerHTML = "<img width=30% src='rainbowcat1.gif' width=10%>";
-
-				}
-				else
-				{
-					msg = "Incorrect!";
-					score -= 3;
-					fbRef.innerHTML = "<img width=30% src='rainbowcat1.gif' width=10%>";
-					var signArr = [" + "," - "," * "," ÷ "];
-					error = error + errorTmp + '.' + '&#9;' + n1 + '&#9;' + signArr[sign] + '&#9;' + n2 + ' = ' +'<br>';
-					errorTmp++;
-					errorCheck();
-				}
-
-				scoreR.innerHTML=score;
-				feedback.innerHTML = msg;
-
-				questionPush();
-				document.getElementById('reply').value='';
-			}
+		<script src="index.js" async></script>
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 		</script>
-
-		<style>
-			body
-			{
-				font-size:30px;
-				font-family: 'Bodoni Moda', serif;
-				margin-right:2em;
-				margin-left:2em;
-				margin-top:2em;
-				margin-bottom:2em;
-			}
-			
-			.right
-			{
-				font-size:100px;
-				font-size:35px;font-family: 'Noto Serif JP', serif;
-				
-				
-				float:right;
-			}
-			
-			tr
-			{
-				margin:auto;
-			}
-			
-			.eeStyle
-			{
-				color : red;
-			}
-			
-			table,th,td
-			{ 
-				font-size:80%;
-				text-align:center;
-				border-collapse:collapse;
-				border: 1px solid black;
-			}
-			
-			th
-			{
-				text-align:center;
-				height:50px;
-			}
-			
-		
-
-			td
-			{
-				text-align:center;
-			}
-		</style>
+		<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+		</script>
 		<title>ARI</title>
+		<link href="index.css" rel="stylesheet">
 	</head>
 
-	<body onload='questionPush();'>
-		Question:
+	<body onload='questionPush();' bgcolor=#BBDFC5>
+		<span style='font-size:150%;'>Question:</span>
+		
+		<hr align="left" color="#60935D" width="10%"><br>
 		<div class='right'>
 			Score:
 			<span id=scoreSpan></span><br>
@@ -206,7 +44,7 @@
 			</table>
 		</div>
 		<br>
-		<span style="font-family: 'Bodoni Moda', serif;" id='q1'>??+??</span>=
+		<span style="font-family: 'Bodoni Moda', serif;" id='q1'>$??+??$</span>=
 		<input type=text id='reply'>
 		<button onclick='check();'>check</button>
 		<br>
@@ -218,9 +56,11 @@
 				<span id='fb1'></span>
 				
 				<span id='fbImg'>
-					<img width=30% src='rainbowcat1.gif' width=10%>
+					<img  src='rainbowcat1.gif' width=10%>
 				</span>
-
+		<br><br><br><br><br>
+		<span class='eeStyle'>Wrong Questions</span>
+		<hr align="left" color="#60935D" width="10%"><br>
 		<div id='errorArea' class='eeStyle' style=></div>
 	</body>
 </html> 

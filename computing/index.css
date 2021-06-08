@@ -1,0 +1,49 @@
+body
+			{
+				font-size:30px;
+				font-family: 'Bodoni Moda', serif;
+				margin-right:2em;
+				margin-left:2em;
+				margin-top:2em;
+				margin-bottom:2em;
+			}
+			
+			.right
+			{
+				font-size:100px;
+				font-size:35px;font-family: 'Noto Serif JP', serif;
+				
+				
+				float:right;
+			}
+			
+			tr
+			{
+				margin:auto;
+			}
+			
+			.eeStyle
+			{
+				color : red;
+			}
+			
+			table,th,td
+			{ 
+				font-size:80%;
+				text-align:center;
+				border-collapse:collapse;
+				border: 1px solid black;
+			}
+			
+			th
+			{
+				text-align:center;
+				height:50px;
+			}
+			
+		
+
+			td
+			{
+				text-align:center;
+			}
