@@ -2,14 +2,16 @@
 <head>
 	<title>Question</title>
 	<script>
-		var sc=0;
-		var gotIt= [0,0,0,0,0,0,0,0,0,0];
-		var givePoint=1;
+		var sc = 0;
+		var gotIt = [0,0,0,0,0,0,0,0,0,0];
+		var givePoint = 1;
+		
 		function scoreChange()
 		{
 			var ref = document.getElementById('score');
 			ref.innerHTML = sc;
 		}
+		
 		function checkGot(i)
 		{
 			if(gotIt[i] == 1)givePoint = 0;
@@ -20,6 +22,7 @@
 				sc+=10;
 			}
 		}
+		
 		function check11()
 		{
 			var user = document.getElementById('Q11ans').value;
@@ -34,6 +37,7 @@
 				alert('Incorrect!');
 			}
 		}
+		
 	</script>
 
 </head>
