@@ -1,15 +1,20 @@
 <html>
 <head>
 	<title>Question</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet"> 
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet"> 
 	<script>
 		var sc = 0;
-		var gotIt = [0,0,0,0,0,0,0,0,0,0];
+		var gotIt = [0,0,0,0,0,0,0,0,0,0,0,0];
 		var givePoint = 1;
 		
 		function scoreChange()
 		{
 			var ref = document.getElementById('score');
 			ref.innerHTML = sc;
+			alert(' now '+sc+' points ');
 		}
 		
 		function checkGot(i)
@@ -22,93 +27,159 @@
 				sc+=10;
 			}
 		}
+		function showff(message,id)
+		{
+			var ref = document.getElementById(id);
+			ref.innerHTML = '<img src='+message+'.png width=4%>'+'<br>';
+		}
 		
 		function check11()
 		{
 			var user = document.getElementById('Q11ans').value;
+			var ref = document.getElementById('fb11');
+			
 			if(user == "innerHTML")
 			{
 				sc+=10;
-				alert('correct!'+' now '+sc+' points ');
+				
 				scoreChange();
+				ref.innerHTML = '<img src=correct.png width=4%>'+'<br>';
 			}
 			else
 			{
-				alert('Incorrect!');
+				ref.innerHTML = '<img src=incorrect.png width=4%>'+'<br>';
 			}
 		}
 		
+		function check12()
+		{
+			var user = document.getElementById('Q12ans').value;
+			var ref = document.getElementById('fb12');
+			
+			if(user == "Math.random()")
+			{
+				sc+=10;
+				
+				scoreChange();
+				ref.innerHTML = '<img src=correct.png width=10%>'+'<br>';
+			}
+			else
+			{
+				ref.innerHTML = '<img src=incorrect.png width=10%>'+'<br>';
+			}
+		}
 	</script>
+	<style>
+		footer
+		{
+			display:block;
+			clear:both;
+			padding:5px;
+			text-align:center;
+			font-family: 'Noto Serif TC', serif;
+		}
+		hr
+		{
+			border: 3px solid;
+			border-radius: 5px;
+			color:#E86252;
+		}
+		body
+		{
+			    font-family: 'Libre Baskerville', serif;
+		}
+	</style>
 
 </head>
-
-	<body onload='scoreChange();'>
-		<h1>score:<span id='score'></span></h1>
+<!-- 台中大帥哥  端午節粽子就是要吃中部口味-->
+	<body bgcolor=#EBB3A9 onload='scoreChange();'>
+		<p id=head></p>
+		<p align="center" style="background:#EEEBD0;font-family: 'Pangolin', cursive;font-size:1000%;">score:<span  id='score'></span></p><br><br>
 		<font size=5>
-		<h1>Q1</h1>
-		HTML is a programming language. 
-		<button onclick="alert('Incorrect');"><img src=o.gif width=40 height=40></button>
-		<button onclick="checkGot(0);alert('correct!'+' now '+sc+' points ');scoreChange();"><img src=x.jpg width=40 height=40></button> <br>
-
-		<h1>Q2</h1>
+		<h1>Q1</h1><span id='fb1'></span>
+		HTML is a programming language.
+		<button onclick="showff('incorrect','fb1');"><img src=o.gif width=40 height=40></button>
+		<button onclick="checkGot(0);showff('correct','fb1');scoreChange();"><img src=x.jpg width=40 height=40></button> <br>
+		
+		<hr align="left" width="10%"><br>
+		
+		<h1>Q2</h1><span id='fb2'></span>
 		Which is for changing title?  
-		<input type=radio name=q2 onclick="alert('Incorrect');">&lt;h1&gt;&nbsp; 
-		<input type=radio name=q2 onclick='checkGot(1);alert("correct"+" now "+sc+" points ");scoreChange();'>&lt;title&gt;&nbsp; 
-		<input type=radio name=q2 onclick="alert('Incorrect');">&lt;hr&gt;&nbsp; 
-		<input type=radio name=q2 onclick="alert('Incorrect');">&lt;font&gt; <br>
+		<input type=radio name=q2 onclick="showff('incorrect','fb2');">&lt;h1&gt;&nbsp; 
+		<input type=radio name=q2 onclick='checkGot(1);showff("correct","fb2");scoreChange();'>&lt;title&gt;&nbsp; 
+		<input type=radio name=q2 onclick="showff('incorrect','fb2');">&lt;hr&gt;&nbsp; 
+		<input type=radio name=q2 onclick="showff('incorrect','fb2');">&lt;font&gt; <br>
 		
-		<h1>Q3</h1>
+		<hr align="left" width="10%"><br>
+		
+		<h1>Q3</h1><span id='fb3'></span>
 		Which is for changing font size?  
-		<input type=radio name=q24 onclick="alert('Incorrect');">&lt;h1&gt;&nbsp; 
-		<input type=radio name=q24 onclick='alert("Incorrect");'>&lt;title&gt;&nbsp; 
-		<input type=radio name=q24 onclick="alert('Incorrect');">&lt;hr&gt;&nbsp; 
-		<input type=radio name=q24 onclick="checkGot(2);alert('correct'+' now '+sc+' points ');scoreChange();">&lt;font&gt; <br>
+		<input type=radio name=q24 onclick="showff('incorrect','fb3');">&lt;h1&gt;&nbsp; 
+		<input type=radio name=q24 onclick="showff('incorrect','fb3');">&lt;title&gt;&nbsp; 
+		<input type=radio name=q24 onclick="showff('incorrect','fb3');">&lt;hr&gt;&nbsp; 
+		<input type=radio name=q24 onclick="checkGot(2);showff('correct','fb3');scoreChange();">&lt;font&gt; <br>
 		
-		<h1>Q4</h1>
+		<hr align="left" width="10%"><br>
+
+		<h1>Q4</h1><span id='fb4'></span>
 		HTML's filename extension is?
-		<input type=checkbox name=q4 onclick="alert('Incorrect');">.exe&nbsp; 
-		<input type=checkbox name=q4 onclick="checkGot(3);alert('correct'+' now '+sc+' points ');scoreChange();">.html&nbsp; 
-		<input type=checkbox name=q4 onclick="alert('Incorrect');">.txt&nbsp; 
-		<input type=checkbox name=q4 onclick="alert('Incorrect');">.docx&nbsp; <br>
-		.
-		<h1>Q5</h1>
+		<input type=checkbox name=q4 onclick="showff('incorrect','fb4');">.exe&nbsp; 
+		<input type=checkbox name=q4 onclick="checkGot(3);showff('correct','fb4');scoreChange();">.html&nbsp; 
+		<input type=checkbox name=q4 onclick="showff('incorrect','fb4');">.txt&nbsp; 
+		<input type=checkbox name=q4 onclick="showff('incorrect','fb4');">.docx&nbsp; <br>
+		
+		<hr align="left" width="10%"><br>
+		
+		<h1>Q5</h1><span id='fb5'></span>
 		&lt;h1&gt; needs &lt;/h1&gt;
-		<button onclick="checkGot(4);alert('correct'+' now '+sc+' points ');scoreChange();"><img src=o.gif width=40 height=40></button>
-		<button onclick="alert('Incorrect!');"><img src=x.jpg width=40 height=40></button>
+		<button onclick="checkGot(4);showff('correct','fb5');scoreChange();"><img src=o.gif width=40 height=40></button>
+		<button onclick="showff('incorrect','fb5');"><img src=x.jpg width=40 height=40></button>
 		
-		<h1>Q6</h1>
+		<hr align="left" width="10%"><br>
+		
+		<h1>Q6</h1><span id='fb6'></span>
 		Minimum font size is?
-		<input type=radio name=q31 onclick="alert('Incorrect');">&lt;h1&gt;&nbsp; 
-		<input type=radio name=q31 onclick="alert('Incorrect');">&lt;h2&gt;&nbsp; 
-		<input type=radio name=q31 onclick="alert('Incorrect');">&lt;h3&gt;&nbsp; 
-		<input type=radio name=q31 onclick="checkGot(5);alert('correct'+' now '+sc+' points ');scoreChange();">&lt;h6&gt; <br>
+		<input type=radio name=q31 onclick="showff('incorrect','fb6');">&lt;h1&gt;&nbsp; 
+		<input type=radio name=q31 onclick="showff('incorrect','fb6');">&lt;h2&gt;&nbsp; 
+		<input type=radio name=q31 onclick="showff('incorrect','fb6');">&lt;h3&gt;&nbsp; 
+		<input type=radio name=q31 onclick="checkGot(5);showff('correct','fb6');scoreChange();">&lt;h6&gt; <br>
 		
-		<h1>Q7</h1>
+		<hr align="left" width="10%"><br>
+		
+		<h1>Q7</h1><span id='fb7'></span>
 		Which is a sigle tag?
-		<input type=radio name=q3 onclick="checkGot(6);alert('correct'+' now '+sc+' points ');scoreChange();">&lt;br&gt;&nbsp;&nbsp; 
-		<input type=radio name=q3 onclick="alert('Incorrect');">&lt;h2&gt;&nbsp;&nbsp; 
-		<input type=radio name=q3 onclick="alert('Incorrect');">&lt;table&gt;&nbsp;&nbsp; 
-		<input type=radio name=q3 onclick="alert('Incorrect');">&lt;a&gt;&nbsp; <br>
+		<input type=radio name=q3 onclick="checkGot(6);showff('correct','fb7');scoreChange();">&lt;br&gt;&nbsp;&nbsp; 
+		<input type=radio name=q3 onclick="showff('incorrect','fb7');">&lt;h2&gt;&nbsp;&nbsp; 
+		<input type=radio name=q3 onclick="showff('incorrect','fb7');">&lt;table&gt;&nbsp;&nbsp; 
+		<input type=radio name=q3 onclick="showff('incorrect','fb7');">&lt;a&gt;&nbsp; <br>
 		
-		<h1>Q8</h1>
+		<hr align="left" width="10%"><br>
+
+		<h1>Q8</h1><span id='fb8'></span>
 		HTML ignores the letter case
-		<button onclick="checkGot(7);alert('correct'+' now '+sc+' points ');scoreChange();"><img src=o.gif width=40 height=40></button>
-		<button onclick="alert('Incorrect!');"><img src=x.jpg width=40 height=40></button>
+		<button onclick="checkGot(7);showff('correct','fb8');scoreChange();"><img src=o.gif width=40 height=40></button>
+		<button onclick="showff('incorrect','fb8');"><img src=x.jpg width=40 height=40></button>
 		
-		<h1>Q9</h1>
+		<hr align="left" width="10%"><br>
+		
+		<h1>Q9</h1><span id='fb9'></span>
 		Usually used with CSS and JavaScript
-		<button onclick="checkGot(8);alert('correct'+' now '+sc+' points ');scoreChange();"><img src=o.gif width=40 height=40></button>
-		<button onclick="alert('Incorrect!');"><img src=x.jpg width=40 height=40></button>
+		<button onclick="checkGot(8);showff('correct','fb9');scoreChange();"><img src=o.gif width=40 height=40></button>
+		<button onclick="showff('incorrect','fb9');"><img src=x.jpg width=40 height=40></button>
 		
-		<h1>Q10</h1>
+		<hr align="left" width="10%"><br>
+		
+		<h1>Q10</h1><span id='fb10'></span>
 		which is NOT font's attribute?
-		<input type=radio name=q311 onclick="checkGot(9);alert('correct'+' now '+sc+' points ');scoreChange();">src&nbsp; 
-		<input type=radio name=q311 onclick="alert('Incorrect');">color&nbsp; 
-		<input type=radio name=q311 onclick="alert('Incorrect');">size&nbsp; 
-		<input type=radio name=q311 onclick="alert('Incorrect');">face<br>
+		<input type=radio name=q311 onclick="checkGot(9);showff('correct','fb10');scoreChange();">src&nbsp; 
+		<input type=radio name=q311 onclick="showff('incorrect','fb10');">color&nbsp; 
+		<input type=radio name=q311 onclick="showff('incorrect','fb10');">size&nbsp; 
+		<input type=radio name=q311 onclick="showff('incorrect','fb10');">face<br>
 		
-		<h1>Q11</h1>
-		what should be writen in the following ??? <br>
+		<hr align="left" width="10%"><br>
+		
+		<h1>Q11</h1><span id='fb11'></span>
+		what should be writen in the following ??? 
 		<br>
 		<img src=down1.png width=4%><img src=down1.png width=4%><img src=down1.png width=4%>
 		<img src=down2.png width=4%><img src=down2.png width=4%><img src=down2.png width=4%>
@@ -127,7 +198,32 @@ function a()
 		(last four letter please make upper-alpha)
 		<input type=text id='Q11ans'>
 		<button onclick='check11();'>check</button>
-		</font>
 		
+		
+		<hr align="left" width="10%"><br>
+		
+		
+		<h1>Q12</h1><span id='fb12'></span>
+		which can make a random number?<br>
+		<br>
+		<img src=down1.png width=4%><img src=down1.png width=4%><img src=down1.png width=4%>
+		<img src=down2.png width=4%><img src=down2.png width=4%><img src=down2.png width=4%>
+		<ol type=i>
+			<li>Math.random()</li>
+			<li>Math.floor()</li>
+			<li>check()</li>
+			<li>innerHTML</li>
+		</ol>
+		(Enter the statement not the number)
+		<input type=text id='Q12ans'>
+		<button onclick='check12();'>check</button>
+		</font>
+	<br><br><br><br><br><br><br><br><br><br><br>
 	</body>
+	<footer>
+		<span style="font-size:20px;font-family: 'Bodoni Moda', serif;"><a href="#head">Head</a></span>
+		<p><small><font size="5" face="serif">Takeda&nbspNana&nbsp&copyCopyright  2021</font>
+		<small></p>
+		<span style="font-size:100px;font-family: 'Mr De Haviland', cursive;">Takeda NaNa</span>
+	</footer>
 </html>
