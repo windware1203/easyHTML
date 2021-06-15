@@ -20,6 +20,20 @@
 				sc+=10;
 			}
 		}
+		function check11()
+		{
+			var user = document.getElementById('Q11ans').value;
+			if(user == "innerHTML")
+			{
+				sc+=10;
+				alert('correct!'+' now '+sc+' points ');
+				scoreChange();
+			}
+			else
+			{
+				alert('Incorrect!');
+			}
+		}
 	</script>
 
 </head>
@@ -88,6 +102,27 @@
 		<input type=radio name=q311 onclick="alert('Incorrect');">color&nbsp; 
 		<input type=radio name=q311 onclick="alert('Incorrect');">size&nbsp; 
 		<input type=radio name=q311 onclick="alert('Incorrect');">face<br>
+		
+		<h1>Q11</h1>
+		what should be writen in the following ??? <br>
+		<br>
+		<img src=down1.png width=4%><img src=down1.png width=4%><img src=down1.png width=4%>
+		<img src=down2.png width=4%><img src=down2.png width=4%><img src=down2.png width=4%>
+		<pre>
+		<code>
+function a()
+{
+	var ref1 = document.getElementById('q1');
+	n1 = Math.floor(Math.random()*21+5);
+	n2 = Math.floor(Math.random()*21+3);
+	answer = n1-n2;
+	ref1.????? = n1+" - "+n2;
+}
+		</code>
+		</pre>
+		(last four letter please make upper-alpha)
+		<input type=text id='Q11ans'>
+		<button onclick='check11();'>check</button>
 		</font>
 		
 	</body>
